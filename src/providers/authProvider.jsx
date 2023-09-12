@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
       return;
     }
 
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     localStorage.setItem('token', token);
   }, [token]);
 

@@ -42,7 +42,7 @@ export default function Login() {
       try {
         const response = await axios.post('/login', values);
         setToken(response.data.serviceToken);
-        navigate('/', { replace: true });
+        // navigate('/', { replace: true });
       } catch (error) {
         formik.errors.submit = error;
       } finally {
