@@ -1,12 +1,27 @@
-# React + Vite
+# Prueba tecnica Telecu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripcion general
 
-Currently, two official plugins are available:
+Para el proyecto usé Vite + React + Material UI + React Router + Axios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Decidi usar Material UI para tener componentes listos para usar, esto para reducir el tiempo de desarrollo.
+Utilizo React Router para dar acceso a la aplicacion solo cuando se tiene un token valido.
+Axios lo uso para realizar las peticiones al backend, la URL del backend la defino en un archivo `.env`.
+Para el manejo de formularios y validaciones de los campos use las librerias `formik` y `yup`.
 
-Para el frontend decidi usar Vite y Material UI. Esto permitira crear la aplicacion de forma rapida y escalable.
+Cuando ocurre un error en la o no se encuentra una ruta muestro una pagina de error.
 
-El esqueleto de la aplicacion lo saque del repositorio de [Material UI](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite)
+El la sesion la manejo usando react context y lo expongo usando un hook llamado `useAuth`.
+
+## Como probarlo en local
+1. Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+```shell
+VITE_API_URL=http://localhost:3000/api/
+```
+2. Abrir una terminal en la raíz del proyecto y ejecutar los siguientes comandos:
+```shell
+npm install
+npm run dev
+```
+
+
