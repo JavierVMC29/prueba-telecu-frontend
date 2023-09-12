@@ -23,8 +23,14 @@ const CustomTableRow = ({ data, role }) => {
 
   const [estado, setEstado] = useState('');
   const [novedad, setNovedad] = useState('');
+  const [departamento, setDepartamento] = useState('');
 
   const [initialRender, setInitialRender] = useState(true);
+
+  const getDepartamento = async (id) => {
+    const response = await axios.get(`/departamentos/${id}`);
+    setDepartamento(response.data.nombre);
+  };
 
   const handleEstadoChange = (event) => {
     setEstado(event.target.value);
@@ -36,6 +42,7 @@ const CustomTableRow = ({ data, role }) => {
 
   useEffect(() => {
     if (initialRender) {
+      getDepartamento(data.departamento_id);
       setEstado(data.estado);
       setNovedad(data.novedad);
       setInitialRender(false);
@@ -83,6 +90,9 @@ const CustomTableRow = ({ data, role }) => {
       </TableCell>
       <TableCell align="left" size="auto">
         {dayjs(data.fecha_ingreso).format('YYYY-MM-DD HH:mm:ss')}
+      </TableCell>
+      <TableCell align="left" size="auto">
+        {departamento}
       </TableCell>
       <TableCell align="left" size="auto">
         {data.motivo_visita}
@@ -149,6 +159,7 @@ const VisitasTable = ({ data, role }) => {
         hora: c.hora,
         fecha_ingreso: c.fecha_ingreso,
         motivo_visita: c.motivo_visita,
+        departamento_id: c.departamento_id,
         estado: c.estado,
         novedad: c.novedad,
         visitante:
@@ -172,6 +183,7 @@ const VisitasTable = ({ data, role }) => {
               <TableCell align="left">Fecha</TableCell>
               <TableCell align="left">Hora</TableCell>
               <TableCell align="left">Fecha Ingreso</TableCell>
+              <TableCell align="left">Departamento que visita</TableCell>
               <TableCell align="left">Motivo de la visita</TableCell>
               <TableCell align="left">
                 Visitante (Nombre Completo - Cedula)
